@@ -1,4 +1,4 @@
-package com.example.contacts.feature
+package com.example.contacts.feature.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
