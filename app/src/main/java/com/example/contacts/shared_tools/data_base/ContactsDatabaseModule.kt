@@ -10,12 +10,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object ContactosDataBaseModule {
+object ContactsDatabaseModule {
 
     @Provides
     @Singleton
     fun provideAppDatabase(
         @ApplicationContext applicationContext: Context
-    ): ContactsDataBase = ContactsDataBase.getInstance(applicationContext)
+    ): ContactsDatabase = ContactsDatabase.getInstance(applicationContext)
 
 }

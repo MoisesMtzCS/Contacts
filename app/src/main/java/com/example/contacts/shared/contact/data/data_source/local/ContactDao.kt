@@ -10,7 +10,7 @@ import com.example.contacts.shared.contact.data.data_source.local.model.ContactE
 interface ContactDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(entity: ContactEntity)
+    fun insert(entity: ContactEntity)
 
     @Query("SELECT * FROM cont")
     suspend fun getAll():List<ContactEntity>

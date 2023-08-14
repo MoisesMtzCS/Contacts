@@ -13,7 +13,7 @@ import com.example.contacts.shared.contact.data.data_source.local.model.ContactE
     ],
     version = 1
 )
-abstract class ContactsDataBase : RoomDatabase() {
+abstract class ContactsDatabase : RoomDatabase() {
 
     /** Obtains an instance of [ContactDao]. */
     abstract fun contactDao(): ContactDao
@@ -24,10 +24,10 @@ abstract class ContactsDataBase : RoomDatabase() {
         private const val NAME: String = "contacts-database"
 
         /** */
-        fun getInstance(applicationContext: Context): ContactsDataBase =
+        fun getInstance(applicationContext: Context): ContactsDatabase =
             Room.databaseBuilder(
                 applicationContext,
-                ContactsDataBase::class.java,
+                ContactsDatabase::class.java,
                 NAME
             ).build()
 

@@ -1,8 +1,7 @@
 package com.example.contacts.shared.contact
 
 import com.example.contacts.shared.contact.data.data_source.local.ContactDao
-import com.example.contacts.shared_tools.data_base.ContactsDataBase
-import dagger.Component
+import com.example.contacts.shared_tools.data_base.ContactsDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +15,7 @@ object ContactProviderModule {
     @Provides
     @Singleton
     fun providesContactDao(
-        contactDataBase: ContactsDataBase
+        contactDataBase: ContactsDatabase
     ): ContactDao = contactDataBase.contactDao()
 
 }
