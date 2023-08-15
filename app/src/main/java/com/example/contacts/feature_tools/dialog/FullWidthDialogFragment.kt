@@ -1,4 +1,4 @@
-package com.example.contacts.feature_tools.dialog.informative
+package com.example.contacts.feature_tools.dialog
 
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment

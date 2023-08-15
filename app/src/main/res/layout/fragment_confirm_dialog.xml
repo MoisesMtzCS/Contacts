@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".feature_tools.dialog.confirm.ConfirmDialogFragment">
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/double_lateral_margin"
+        android:layout_marginVertical="@dimen/small_vertical_margin"
+        android:paddingVertical="@dimen/vertical_margin"
+        android:textSize="@dimen/text_size_l"
+        android:textStyle="bold"
+        tools:text="@tools:sample/lorem" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/half_lateral_margin"
+            android:layout_marginVertical="@dimen/small_vertical_margin"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorAccent"
+            android:text="@string/informative_dialog_cancel"
+            android:textAllCaps="true" />
+
+        <Button
+            android:id="@+id/button_confirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/half_lateral_margin"
+            android:layout_marginVertical="@dimen/small_vertical_margin"
+            android:layout_weight="1"
+            android:backgroundTint="@color/red"
+            android:text="@string/informative_dialog_confirm"
+            android:textAllCaps="true" />
+
+    </LinearLayout>
+
+</LinearLayout>

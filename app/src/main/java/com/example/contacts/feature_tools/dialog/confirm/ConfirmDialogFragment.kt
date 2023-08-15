@@ -1,29 +1,34 @@
-package com.example.contacts.feature_tools.dialog.informative
+package com.example.contacts.feature_tools.dialog.confirm
 
+import android.graphics.Typeface
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
+import com.example.contacts.R
+import com.example.contacts.databinding.FragmentConfirmDialogBinding
 import com.example.contacts.databinding.FragmentInformativeDialogBinding
 import com.example.contacts.feature_tools.dialog.FullWidthDialogFragment
+import com.example.contacts.feature_tools.dialog.informative.InformativeDialogFragment
+import com.google.android.material.button.MaterialButton
 
 /**
- * Informative dialog definition.
+ * COnfirm dialog definition.
  */
-class InformativeDialogFragment : FullWidthDialogFragment() {
+class ConfirmDialogFragment : FullWidthDialogFragment() {
 
     /* ViewBinding instance associated to the current screen */
-    private val binding by lazy { FragmentInformativeDialogBinding.inflate(layoutInflater) }
+    private val binding by lazy { FragmentConfirmDialogBinding.inflate(layoutInflater) }
 
-    /* Arguments required for current screen */
-    private var message: String? = null
+    /* Informative message */
+    private lateinit var message: String
 
-    /** Called at moment that the current screen is created. */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        message = arguments?.getString(MESSAGE_KEY)
-    }
+    /* Actions to manage confirm flow */
+    private lateinit var rightAction: ConfirmDialogAction
 
     /** Obtains the root view. */
     override fun onCreateView(
@@ -46,7 +51,14 @@ class InformativeDialogFragment : FullWidthDialogFragment() {
 
     /** Setup the actions. */
     private fun setupActions() {
-        binding.buttonAccept.setOnClickListener { dismiss() }
+        binding.buttonCancel.setOnClickListener { dismiss() }
+        binding.buttonConfirm.setOnClickListener(::onRightActionClickListener)
+    }
+
+    /** Setup confirm button. */
+    private fun onRightActionClickListener(view: View) {
+        rightAction.action?.invoke()
+        dismiss()
     }
 
 
@@ -62,18 +74,13 @@ class InformativeDialogFragment : FullWidthDialogFragment() {
 
     companion object {
 
-        /* Key associated to message value */
-        private const val MESSAGE_KEY: String = "MESSAGE_KEY"
-
-        /**
-         * Obtains a new instance of [InformativeDialogFragment] by [message] value.
-         */
-        fun newInstance(message: String?): InformativeDialogFragment =
-            InformativeDialogFragment().apply {
-                arguments = Bundle().apply {
-                    putString(MESSAGE_KEY, message)
-                }
-            }
+        fun newInstance(
+            message: String,
+            rightAction: ConfirmDialogAction,
+        ) = ConfirmDialogFragment().apply {
+            this.message = message
+            this.rightAction = rightAction
+        }
 
     }
 

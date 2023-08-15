@@ -13,6 +13,8 @@
 
     <!-- INFORMATIVE DIALOG -->
     <string name="informative_dialog_accept">Aceptar</string>
+    <string name="informative_dialog_confirm">Confirmar</string>
+    <string name="informative_dialog_cancel">Cancelar</string>
 
     <!-- MAIN ACTIVITY -->
     <string name="main_empty_contacts">No tienes contactos, agreguemos uno.</string>
@@ -20,5 +22,6 @@
     <!-- CONTACT DETAILS -->
     <string name="contact_details_delete">Eliminar</string>
     <string name="contact_details_edit">Edit</string>
+    <string name="contact_details_delete_message">¿Estás seguro/a de que deseas eliminar este contacto?</string>
 
 </resources>

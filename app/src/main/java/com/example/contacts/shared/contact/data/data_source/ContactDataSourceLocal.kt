@@ -1,5 +1,7 @@
 package com.example.contacts.shared.contact.data.data_source
 
+import com.example.contacts.shared.contact.domain.entity.Contact
+import com.example.contacts.shared.contact.domain.use_case.delete_contact.DeleteContactResponse
 import com.example.contacts.shared.contact.domain.use_case.get_contact.GetContactResponse
 import com.example.contacts.shared.contact.domain.use_case.get_contacts.GetContactsResponse
 
@@ -17,5 +19,8 @@ interface ContactDataSourceLocal {
 
     /** Obtains contact by id. */
     suspend fun getContactByID(contactId: String): GetContactResponse
+
+    /** Remove contact. */
+    suspend fun deleteContact(contact: Contact): DeleteContactResponse
 
 }
