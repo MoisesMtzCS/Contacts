@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.contacts.R
 import com.example.contacts.databinding.ActivityMainBinding
 import com.example.contacts.feature.create_contact.CreateContactActivity
+import com.example.contacts.feature.main.adapter.ContactAdapter
 import com.example.contacts.feature.splash.CustomSplashActivity
 import com.example.contacts.feature_tools.context.showLongToast
 import com.example.contacts.feature_tools.flow.launchAndRepeatOnLifecycle
 import com.example.contacts.feature_tools.flow.observeFor
+import com.example.contacts.shared.contact.domain.entity.Contact
 import com.example.contacts.shared.contact.domain.use_case.get_contacts.GetContactsResponse
 import com.example.contacts.shared.contact.domain.use_case.get_contacts.GetContactsStatus
 import com.example.contacts.util.clean.InfallibleStatus
@@ -56,9 +59,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     /** Navigate to create contact. */
-    private fun navigateToCreateContact(view: View){
+    private fun navigateToCreateContact(view: View) {
         val intent = Intent(this, CreateContactActivity::class.java)
         startActivity(intent)
+    }
+
+    /** Setup the recycler view contacts. */
+    private fun fillRecyclerView(contacts: List<Contact>) {
+        val contactAdapter = ContactAdapter(contacts, ::onClientClickListener)
+        binding.rvContact.adapter = contactAdapter
+        binding.rvContact.layoutManager = LinearLayoutManager(this)
+    }
+
+    /** Called at moment that [contact] item are clicked. */
+    private fun onClientClickListener(contact: Contact) {
+        showLongToast("Contact")
     }
 
     /*****************************************************************************************
@@ -82,7 +97,16 @@ class MainActivity : AppCompatActivity() {
 
     /** Manage get contacts [response] instance. */
     private fun manageGetContactsResponse(response: GetContactsResponse) {
-        showLongToast(response.contacts.size.toString())
+        fillRecyclerView(response.contacts)
+        setupVisibilityView(response.contacts)
+    }
+
+    /** Setup visibility views */
+    private fun setupVisibilityView(contacts: List<Contact>) {
+        if (contacts.isEmpty()) {
+            binding.llContactsEmpty.visibility = View.VISIBLE
+        } else binding.llContactsEmpty.visibility = View.GONE
+
     }
 
 }

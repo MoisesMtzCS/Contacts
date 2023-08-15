@@ -14,4 +14,7 @@
     <!-- INFORMATIVE DIALOG -->
     <string name="informative_dialog_accept">Aceptar</string>
 
+    <!-- MAIN ACTIVITY -->
+    <string name="main_empty_contacts">No tienes contactos, agreguemos uno.</string>
+
 </resources>
