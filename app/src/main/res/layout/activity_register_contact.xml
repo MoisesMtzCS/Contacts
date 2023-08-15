@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.create_contact.RegisterContactActivity">
+    tools:context=".feature.register_contact.RegisterContactActivity">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scroll_view"

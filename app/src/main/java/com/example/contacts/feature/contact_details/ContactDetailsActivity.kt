@@ -7,8 +7,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.contacts.R
 import com.example.contacts.databinding.ActivityContactDetailsBinding
-import com.example.contacts.feature.create_contact.RegisterContactActivity
-import com.example.contacts.feature.create_contact.RegisterContactActivity.Companion.EDIT_MODE_KEY
+import com.example.contacts.feature.register_contact.RegisterContactActivity
+import com.example.contacts.feature.register_contact.RegisterContactActivity.Companion.EDIT_MODE_KEY
 import com.example.contacts.feature_tools.dialog.confirm.ConfirmDialogAction
 import com.example.contacts.feature_tools.dialog.confirm.showConfirmDialog
 import com.example.contacts.feature_tools.flow.launchAndRepeatOnLifecycle
