@@ -12,12 +12,13 @@ class CreateContactUseCase @Inject constructor(
     private val repository: ContactRepository
 ) : UseCase<CreateContactResponse, CreateContactParams, CreateContactFailure>() {
 
-    /** Run use case. */
+    /** Execute use case. */
     override suspend fun run(params: CreateContactParams): Either<CreateContactFailure, CreateContactResponse> {
         val (name, phone, email) = params
         return when {
             name.isBlank() -> Either.Left(CreateContactFailure.InvalidName)
             phone.isBlank() -> Either.Left(CreateContactFailure.InvalidPhone)
+            email.isBlank() -> Either.Left(CreateContactFailure.InvalidEmail)
             else -> {
                 repository.createContact(name, phone, email)
                 Either.Right(CreateContactResponse())

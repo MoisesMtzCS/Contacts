@@ -2,6 +2,7 @@ package com.example.contacts.shared.contact.data.data_source.local.model
 
 import com.example.contacts.shared.contact.domain.entity.Contact
 
+/** Convert ContactEntity to contact*/
 fun ContactEntity.toContact(): Contact =
     Contact(
         contactID = contactID,
@@ -10,18 +11,11 @@ fun ContactEntity.toContact(): Contact =
         email = email,
     )
 
+/** Convert Contact to ContactEntity. */
 fun Contact.toContactEntity(): ContactEntity =
     ContactEntity(
         contactID = contactID,
         userName = userName,
         phone = phone,
         email = email,
-    )
-
-fun ContactEntity.Companion.formContact(contact: Contact): Contact =
-    Contact(
-        contactID = contact.contactID,
-        userName = contact.userName,
-        phone = contact.phone,
-        email = contact.email,
     )

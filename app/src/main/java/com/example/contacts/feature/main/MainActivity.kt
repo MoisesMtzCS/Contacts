@@ -6,13 +6,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.contacts.R
 import com.example.contacts.databinding.ActivityMainBinding
 import com.example.contacts.feature.contact_details.ContactDetailsActivity
-import com.example.contacts.feature.create_contact.CreateContactActivity
+import com.example.contacts.feature.create_contact.RegisterContactActivity
 import com.example.contacts.feature.main.adapter.ContactAdapter
-import com.example.contacts.feature.splash.CustomSplashActivity
-import com.example.contacts.feature_tools.context.showLongToast
 import com.example.contacts.feature_tools.flow.launchAndRepeatOnLifecycle
 import com.example.contacts.feature_tools.flow.observeFor
 import com.example.contacts.shared.contact.domain.entity.Contact
@@ -61,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
     /** Navigate to create contact. */
     private fun navigateToCreateContact(view: View) {
-        val intent = Intent(this, CreateContactActivity::class.java)
+        val intent = Intent(this, RegisterContactActivity::class.java)
         startActivity(intent)
     }
 

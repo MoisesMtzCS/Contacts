@@ -6,6 +6,7 @@ import com.example.contacts.shared.contact.data.data_source.local.model.toContac
 import com.example.contacts.shared.contact.data.data_source.local.model.toContactEntity
 import com.example.contacts.shared.contact.domain.entity.Contact
 import com.example.contacts.shared.contact.domain.use_case.delete_contact.DeleteContactResponse
+import com.example.contacts.shared.contact.domain.use_case.edit_contact.EditContactResponse
 import com.example.contacts.shared.contact.domain.use_case.get_contact.GetContactResponse
 import com.example.contacts.shared.contact.domain.use_case.get_contacts.GetContactsResponse
 import com.example.contacts.util.segurity.randomUUID
@@ -48,6 +49,13 @@ class ContactDataSourceLocalImp @Inject constructor(
         val contactEntity = contact.toContactEntity()
         contactDao.delete(contactEntity)
         return DeleteContactResponse()
+    }
+
+    /** Edit the contact. */
+    override suspend fun editContact(contact: Contact): EditContactResponse {
+        val entity = contact.toContactEntity()
+        contactDao.insert(entity)
+        return EditContactResponse()
     }
 
 }
