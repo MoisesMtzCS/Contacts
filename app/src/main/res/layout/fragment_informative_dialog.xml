@@ -3,32 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".feature_tools.dialog.informative.InformativeDialogFragment">
 
     <TextView
         android:id="@+id/tv_message"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="@dimen/lateral_margin"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:layout_marginVertical="@dimen/small_vertical_margin"
         android:layout_gravity="center"
-        android:textSize="@dimen/text_size_l"
-        android:paddingHorizontal="@dimen/double_lateral_margin"
+        android:layout_marginHorizontal="@dimen/double_lateral_margin"
+        android:layout_marginVertical="@dimen/small_vertical_margin"
+        android:gravity="center"
         android:paddingVertical="@dimen/vertical_margin"
+        android:textSize="@dimen/text_size_l"
+        android:textStyle="bold"
         tools:text="@tools:sample/lorem" />
 
     <Button
         android:id="@+id/button_accept"
-        android:layout_gravity="end"
-        android:layout_width="wrap_content"
-        android:backgroundTint="@color/colorAccent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/small_vertical_margin"
-        android:layout_marginEnd="@dimen/lateral_margin"
-        android:textAllCaps="true"
-        android:text="@string/informative_dialog_accept"/>
+        android:layout_gravity="end"
+        android:layout_marginHorizontal="@dimen/lateral_margin"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/informative_dialog_accept"
+        android:textAllCaps="true" />
 
 </LinearLayout>

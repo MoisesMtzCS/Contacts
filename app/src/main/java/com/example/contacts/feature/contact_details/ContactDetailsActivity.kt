@@ -1,19 +1,19 @@
 package com.example.contacts.feature.contact_details
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.contacts.R
 import com.example.contacts.databinding.ActivityContactDetailsBinding
-import com.example.contacts.databinding.ActivityMainBinding
-import com.example.contacts.feature.main.MainViewModel
+import com.example.contacts.feature_tools.context.showLongToast
+import com.example.contacts.feature_tools.dialog.confirm.ConfirmDialogAction
+import com.example.contacts.feature_tools.dialog.confirm.showConfirmDialog
 import com.example.contacts.feature_tools.flow.launchAndRepeatOnLifecycle
 import com.example.contacts.feature_tools.flow.observeFor
-import com.example.contacts.shared.contact.domain.entity.Contact
-import com.example.contacts.shared.contact.domain.use_case.get_contact.GetContactParams
-import com.example.contacts.shared.contact.domain.use_case.get_contact.GetContactResponse
-import com.example.contacts.shared.contact.domain.use_case.get_contact.GetContactStatus
-import com.example.contacts.shared.contact.domain.use_case.get_contacts.GetContactsResponse
+import com.example.contacts.shared.contact.domain.use_case.delete_contact.DeleteContactParams
+import com.example.contacts.shared.contact.domain.use_case.delete_contact.DeleteContactResponse
+import com.example.contacts.shared.contact.domain.use_case.delete_contact.DeleteContactStatus
 import com.example.contacts.util.clean.InfallibleStatus
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,6 +23,7 @@ class ContactDetailsActivity : AppCompatActivity() {
     /* Android resources */
     private val binding by lazy { ActivityContactDetailsBinding.inflate(layoutInflater) }
     private val viewModel: ContactDetailsViewModel by viewModels()
+    private val contactID by lazy { intent.getStringExtra(CONTACT_ID_KEY) as String }
 
     /*****************************************************************************************
      * LIFECYCLE
@@ -32,40 +33,60 @@ class ContactDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        launchGetContact()
+        setupViews()
+        setupActions()
     }
 
-    /*****************************************************************************************
-     * USE CASE - GET CONTACT BY ID
-     ****************************************************************************************/
-
-    /** Launch the flow to get contact. */
-    private fun launchGetContact() {
-        launchAndRepeatOnLifecycle {
-            val contactID by lazy { intent.getStringExtra(CONTACT_ID_KEY) as String }
-            val params = GetContactParams(contactID)
-            val response = viewModel.launchGetContact(params)
-            observeFor(response, ::getContactCollector)
-        }
-    }
-
-    /** Collect the status for get contact. */
-    private fun getContactCollector(status: GetContactStatus) {
-        if (status is InfallibleStatus.Done) {
-            manageGetContactResponse(status.value)
-        }
-    }
-
-    /** Manage get contact [response] instance. */
-    private fun manageGetContactResponse(response: GetContactResponse) {
-        setupViews(response.contact)
+    /** Setup the actions. */
+    private fun setupActions() {
+        binding.buttonDelete.setOnClickListener(::deleteContactDialog)
+        binding.buttonEdit.setOnClickListener { showLongToast("Edit") }
     }
 
     /** Setup views. */
-    private fun setupViews(contact: Contact){
+    private fun setupViews() {
+        val contact = viewModel.getContact(contactID)
         binding.tvName.text = contact.userName
         binding.tvNumber.text = contact.phone
         binding.tvEmail.text = contact.email
+    }
+
+    /*****************************************************************************************
+     * USE CASE - DELETE CONTACT
+     ****************************************************************************************/
+
+    /** Launch the flow to delete contact. */
+    private fun launchDeleteContact() {
+        launchAndRepeatOnLifecycle {
+            val contactID by lazy { intent.getStringExtra(CONTACT_ID_KEY) as String }
+            val contact = viewModel.getContact(contactID)
+            val params = DeleteContactParams(contact)
+            val response = viewModel.launchDeleteContact(params)
+            observeFor(response, ::deleteContactCollector)
+        }
+    }
+
+    /** Collect the status for delete contact. */
+    private fun deleteContactCollector(status: DeleteContactStatus) {
+        if (status is InfallibleStatus.Done) {
+            manageDeleteContactResponse(status.value)
+        }
+    }
+
+    /** Manage delete contact [response] instance. */
+    private fun manageDeleteContactResponse(response: DeleteContactResponse) {
+        finish()
+    }
+
+    /** Show cancel downloading region dialog. */
+    private fun deleteContactDialog(view: View) {
+        val message: String = getString(R.string.contact_details_delete_message)
+        showConfirmDialog(
+            message = message,
+            rightAction = ConfirmDialogAction(
+                action = { launchDeleteContact() }
+            )
+        )
     }
 
     companion object {
