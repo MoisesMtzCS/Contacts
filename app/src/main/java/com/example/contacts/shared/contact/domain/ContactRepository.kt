@@ -2,6 +2,7 @@ package com.example.contacts.shared.contact.domain
 
 import com.example.contacts.shared.contact.domain.entity.Contact
 import com.example.contacts.shared.contact.domain.use_case.delete_contact.DeleteContactResponse
+import com.example.contacts.shared.contact.domain.use_case.edit_contact.EditContactResponse
 import com.example.contacts.shared.contact.domain.use_case.get_contact.GetContactResponse
 import com.example.contacts.shared.contact.domain.use_case.get_contacts.GetContactsResponse
 
@@ -23,5 +24,8 @@ interface ContactRepository {
 
     /** Remove contact. */
     suspend fun deleteContact(contact: Contact): DeleteContactResponse
+
+    /** Edit the contact. */
+    suspend fun editContact(contact: Contact): EditContactResponse
 
 }

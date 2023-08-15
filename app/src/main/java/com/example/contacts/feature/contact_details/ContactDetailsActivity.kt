@@ -1,12 +1,14 @@
 package com.example.contacts.feature.contact_details
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.contacts.R
 import com.example.contacts.databinding.ActivityContactDetailsBinding
-import com.example.contacts.feature_tools.context.showLongToast
+import com.example.contacts.feature.create_contact.RegisterContactActivity
+import com.example.contacts.feature.create_contact.RegisterContactActivity.Companion.EDIT_MODE_KEY
 import com.example.contacts.feature_tools.dialog.confirm.ConfirmDialogAction
 import com.example.contacts.feature_tools.dialog.confirm.showConfirmDialog
 import com.example.contacts.feature_tools.flow.launchAndRepeatOnLifecycle
@@ -33,6 +35,11 @@ class ContactDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+    }
+
+    /** Called at start the screen. */
+    override fun onStart() {
+        super.onStart()
         setupViews()
         setupActions()
     }
@@ -40,7 +47,7 @@ class ContactDetailsActivity : AppCompatActivity() {
     /** Setup the actions. */
     private fun setupActions() {
         binding.buttonDelete.setOnClickListener(::deleteContactDialog)
-        binding.buttonEdit.setOnClickListener { showLongToast("Edit") }
+        binding.buttonEdit.setOnClickListener(::navigateToEditContact)
     }
 
     /** Setup views. */
@@ -49,6 +56,14 @@ class ContactDetailsActivity : AppCompatActivity() {
         binding.tvName.text = contact.userName
         binding.tvNumber.text = contact.phone
         binding.tvEmail.text = contact.email
+    }
+
+    /** Navigate to edit contact. */
+    private fun navigateToEditContact(view: View) {
+        val intent = Intent(this, RegisterContactActivity::class.java)
+        intent.putExtra(RegisterContactActivity.CONTACT_ID_KEY, contactID)
+        intent.putExtra(EDIT_MODE_KEY, true)
+        startActivity(intent)
     }
 
     /*****************************************************************************************

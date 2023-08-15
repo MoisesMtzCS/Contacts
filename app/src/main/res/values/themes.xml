@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Contacts" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Contacts" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <!-- Primary brand color. -->
@@ -18,7 +18,7 @@
         <item name="android:windowBackground">@color/background_color</item>
     </style>
 
-    <style name="Base.Theme.Contacts.Profile" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Contacts.Profile" parent="Theme.Material3.Light.NoActionBar">
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >@color/colorPrimary</item>
     </style>
