@@ -19,7 +19,7 @@ class CreateContactViewModel @Inject constructor(
 ) : ViewModel() {
 
     /*****************************************************************************************
-     * USE CASE - GET CONTACTS
+     * USE CASE - CREATE CONTACTS
      ****************************************************************************************/
 
     /** Launch the flow to create contact. */
