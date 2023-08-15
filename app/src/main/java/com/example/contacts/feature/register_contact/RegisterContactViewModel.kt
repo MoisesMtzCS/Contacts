@@ -1,4 +1,4 @@
-package com.example.contacts.feature.create_contact
+package com.example.contacts.feature.register_contact
 
 import androidx.lifecycle.ViewModel
 import com.example.contacts.shared.contact.domain.entity.Contact
