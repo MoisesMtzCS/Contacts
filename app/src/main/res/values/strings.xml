@@ -1,3 +1,17 @@
 <resources>
+    <!-- APP NAME -->
     <string name="app_name">Contacts</string>
+
+    <!-- CREATE CONTACT -->
+    <string name="create_contact_name">Nombre</string>
+    <string name="create_contact_phone_number">Numero de teléfono</string>
+    <string name="create_contact_email">Correo electronico</string>
+    <string name="create_contact_create_contact">Registrar contacto</string>
+    <!-- CREATE CONTACT: FAILURE MESSAGE -->
+    <string name="create_contact_failure_name">El campo de nombre no puede estar vacío.</string>
+    <string name="create_contact_failure_phone_number">El campo de número de teléfono no puede estar vacío.</string>
+
+    <!-- INFORMATIVE DIALOG -->
+    <string name="informative_dialog_accept">Aceptar</string>
+
 </resources>

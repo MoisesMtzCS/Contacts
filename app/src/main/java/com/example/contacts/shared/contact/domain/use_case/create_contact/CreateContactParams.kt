@@ -1,4 +1,4 @@
-package com.example.contacts.shared.contact.domain.use_case.add_contact
+package com.example.contacts.shared.contact.domain.use_case.create_contact
 
 data class CreateContactParams(
     val name: String,

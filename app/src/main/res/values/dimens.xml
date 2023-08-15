@@ -25,5 +25,8 @@
     <dimen name="vertical_margin">18dp</dimen>
     <dimen name="double_vertical_margin">36dp</dimen>
     <dimen name="triple_vertical_margin">48dp</dimen>
+    <dimen name="dialog_width">280dp</dimen>
+
+
 
 </resources>
