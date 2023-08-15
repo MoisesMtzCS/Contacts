@@ -1,10 +1,13 @@
-package com.example.contacts.shared.contact.domain.use_case.add_contact
+package com.example.contacts.shared.contact.domain.use_case.create_contact
 
 import com.example.contacts.shared.contact.domain.ContactRepository
 import com.example.contacts.util.clean.Either
 import com.example.contacts.util.clean.UseCase
 import javax.inject.Inject
 
+/**
+ * Create contact.
+ */
 class CreateContactUseCase @Inject constructor(
     private val repository: ContactRepository
 ) : UseCase<CreateContactResponse, CreateContactParams, CreateContactFailure>() {

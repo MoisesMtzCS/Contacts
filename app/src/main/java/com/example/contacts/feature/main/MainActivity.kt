@@ -1,10 +1,14 @@
 package com.example.contacts.feature.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import com.example.contacts.R
 import com.example.contacts.databinding.ActivityMainBinding
+import com.example.contacts.feature.create_contact.CreateContactActivity
+import com.example.contacts.feature.splash.CustomSplashActivity
 import com.example.contacts.feature_tools.context.showLongToast
 import com.example.contacts.feature_tools.flow.launchAndRepeatOnLifecycle
 import com.example.contacts.feature_tools.flow.observeFor
@@ -23,9 +27,16 @@ class MainActivity : AppCompatActivity() {
     /*****************************************************************************************
      * LIFECYCLE
      ****************************************************************************************/
+
+    /** Called at create the screen. */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+    }
+
+    /** Called at start the screen. */
+    override fun onStart() {
+        super.onStart()
         setupViews()
     }
 
@@ -41,9 +52,13 @@ class MainActivity : AppCompatActivity() {
 
     /** Setup the actions. */
     private fun setupActions() {
-        binding.floatingActionButton.setOnClickListener {
-            showLongToast("Add Contact")
-        }
+        binding.floatingActionButton.setOnClickListener(::navigateToCreateContact)
+    }
+
+    /** Navigate to create contact. */
+    private fun navigateToCreateContact(view: View){
+        val intent = Intent(this, CreateContactActivity::class.java)
+        startActivity(intent)
     }
 
     /*****************************************************************************************
