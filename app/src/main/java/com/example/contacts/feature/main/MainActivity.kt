@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.contacts.R
 import com.example.contacts.databinding.ActivityMainBinding
+import com.example.contacts.feature.contact_details.ContactDetailsActivity
 import com.example.contacts.feature.create_contact.CreateContactActivity
 import com.example.contacts.feature.main.adapter.ContactAdapter
 import com.example.contacts.feature.splash.CustomSplashActivity
@@ -73,7 +74,14 @@ class MainActivity : AppCompatActivity() {
 
     /** Called at moment that [contact] item are clicked. */
     private fun onClientClickListener(contact: Contact) {
-        showLongToast("Contact")
+        navigateToContactDetails(contact.contactID)
+    }
+
+    /** Navigate to contact details. */
+    private fun navigateToContactDetails(contactId: String) {
+        val intent = Intent(this, ContactDetailsActivity::class.java)
+        intent.putExtra(ContactDetailsActivity.CONTACT_ID_KEY, contactId)
+        startActivity(intent)
     }
 
     /*****************************************************************************************

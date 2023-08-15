@@ -1,5 +1,6 @@
 package com.example.contacts.shared.contact.data.data_source
 
+import com.example.contacts.shared.contact.domain.use_case.get_contact.GetContactResponse
 import com.example.contacts.shared.contact.domain.use_case.get_contacts.GetContactsResponse
 
 interface ContactDataSourceLocal {
@@ -13,5 +14,8 @@ interface ContactDataSourceLocal {
 
     /** Obtains all contacts. */
     suspend fun getContacts(): GetContactsResponse
+
+    /** Obtains contact by id. */
+    suspend fun getContactByID(contactId: String): GetContactResponse
 
 }

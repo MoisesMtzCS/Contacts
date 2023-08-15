@@ -12,7 +12,10 @@ interface ContactDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: ContactEntity)
 
-    @Query("SELECT * FROM cont")
+    @Query("SELECT * FROM contact")
     suspend fun getAll():List<ContactEntity>
+
+    @Query("SELECT * FROM contact WHERE contact_id IS :id")
+    suspend fun getById(id: String): ContactEntity
 
 }

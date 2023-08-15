@@ -30,8 +30,13 @@
         <activity
             android:name=".feature.create_contact.CreateContactActivity"
             android:exported="false"
-            android:theme="@style/Base.Theme.Contacts.Profile"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.Contacts.Profile" />
+        <activity
+            android:name=".feature.contact_details.ContactDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.Contacts.Profile" />
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import com.example.contacts.shared.contact.data.data_source.local.model.ContactE
 import com.example.contacts.shared.contact.data.data_source.local.model.toContact
 import com.example.contacts.shared.contact.data.data_source.local.model.toContactEntity
 import com.example.contacts.shared.contact.domain.entity.Contact
+import com.example.contacts.shared.contact.domain.use_case.get_contact.GetContactResponse
 import com.example.contacts.shared.contact.domain.use_case.get_contacts.GetContactsResponse
 import com.example.contacts.util.segurity.randomUUID
 import javax.inject.Inject
@@ -32,6 +33,13 @@ class ContactDataSourceLocalImp @Inject constructor(
         val entities = contactDao.getAll()
         val contacts = entities.map(ContactEntity::toContact)
         return GetContactsResponse(contacts)
+    }
+
+    /** Obtains contact by id. */
+    override suspend fun getContactByID(contactId: String): GetContactResponse {
+        val entity: ContactEntity = contactDao.getById(contactId)
+        val contact = entity.toContact()
+        return GetContactResponse(contact)
     }
 
 }
